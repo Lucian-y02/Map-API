@@ -21,7 +21,7 @@ class Map(pygame.sprite.Sprite):
         self.remake = True
         self.image = None
         self.rect = None
-        self.zoom = 8
+        self.zoom = 3
         self.pos = [0, -0]
         self.pos_step = 0.001
         self.spn_step = 10
@@ -29,9 +29,18 @@ class Map(pygame.sprite.Sprite):
         self.fstring = 'Узбекистан'
 
     def update(self, events):
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_PAGEUP:
+                    self.zoom = max(3, self.zoom - 1)
+                    self.remake = True
+                elif event.key == pygame.K_PAGEDOWN:
+                    self.zoom = min(35, self.zoom + 1)
+                    self.remake = True
         if self.remake:
             self.search()
             self.get_map()
+            self.remake = False
 
     def change_pos(self, b_string):
         self.image = image_convertor(b_string)

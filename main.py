@@ -4,12 +4,16 @@ import pygame as pygame
 
 from constants import *
 from map import Map
+from input import InputStr
+
+pygame.init()
 
 level0_sprites = pygame.sprite.Group()
 level1_sprites = pygame.sprite.Group()
 level2_sprites = pygame.sprite.Group()
 # Добавляем классы
-Map(level0_sprites)
+main_map = Map(level0_sprites)
+input1 = InputStr(10, 10, 100, 20, level1_sprites)
 ################################################
 
 pygame.init()
@@ -34,6 +38,10 @@ while running:
     level1_sprites.draw(screen)
     level2_sprites.draw(screen)
 
+    if input1.text_out:
+        main_map.fstring = input1.text_out
+        main_map.remake = True
+        input1.text_out = ""
     pygame.display.flip()
     clock.tick(FPS)
 
