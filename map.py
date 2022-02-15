@@ -4,8 +4,6 @@ import pygame
 import requests
 from PIL import Image
 
-# from constants import *
-
 
 def image_convertor(b_string):
     image = Image.open(BytesIO(b_string))
