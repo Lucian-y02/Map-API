@@ -41,6 +41,7 @@ while running:
     if input1.text_out:
         main_map.fstring = input1.text_out
         main_map.remake = True
+        main_map.is_moving = False
         input1.text_out = ""
     pygame.display.flip()
     clock.tick(FPS)
